@@ -5,6 +5,8 @@
 
     <div><h1>Saludos <?php echo $nombre;?></h1></div>
     
+    <example-component></example-component>
+
     <ul>
     {{-- @foreach ($consolas as $consola)
     <li>{{$consola}}</li>
@@ -26,6 +28,10 @@
     <p>No tienes consolas</p>
     @endif
 
+    @php
+        $html ="<a onclick='alert(\"xss\")' href='#'>Link</a>";
+    @endphp
     
+    {!! Purify::clean($html) !!}
 
     @endsection

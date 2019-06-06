@@ -1,6 +1,13 @@
 @csrf
 
 <div class="form-group">
+    <label for="avatar">
+    <input type="file" name="avatar">
+    {!! $errors->first('avatar', '<span class="alert">:message</span>')!!}</label> 
+  
+</div>
+
+<div class="form-group">
     <label for="nombre">Nombre
         {{-- Con el value old('nombre') guarda el valor anterior que tenia --}}
     <input type="text" class="form-control" name="name" value="{{$user->name ?? old('name') }}">

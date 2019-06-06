@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\MessageWasReceived' => [
             'App\Listeners\SendAutoresponder',
-            'App\Listeners\SendNotificationToTheOwner',
+            // 'App\Listeners\SendNotificationToTheOwner',
         ],
     ];
 

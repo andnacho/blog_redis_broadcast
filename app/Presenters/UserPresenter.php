@@ -14,6 +14,15 @@ class UserPresenter extends Presenter
 
     }
 
+    public function linkUser(){
+  
+        return new HtmlString("<a href='" . 
+        route('usuarios.show', $this->model->id) . "'>" .
+         $this->model->name . " </a>");
+
+    }
+
+
     public function roles(){
     return $this->model->roles->pluck('display_name')->implode(' / ');
     }

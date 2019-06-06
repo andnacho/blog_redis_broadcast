@@ -26,6 +26,7 @@ class CreateUserRequest extends FormRequest
         return [
             //
             'name' => 'required',
+            'avatar' => 'required|image',
             'email' => 'email|required|unique:users,email',
             'password' => 'required|confirmed', // 'campo' == 'campo_confirmation'
             'roles' => 'required',

@@ -19,6 +19,7 @@
                 <th>Notas</th>
                 <th>Tags</th>
                 <th>Acciones</th>
+                <th>Avatar</th>
             </tr>
 
         </thead>
@@ -28,13 +29,13 @@
                 
             <tr>
             <td>{{ $user->id }}</td>
-            <td>{{ $user->present()->link() }}</td>
+            <td>{{ $user->present()->linkUser() }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->present()->roles() }}</td>
             <th>{{ $user->present()->notes() }}</td>
             <th>{{ $user->present()->tags()  }}</td>
             <td><a class="btn btn-primary btn-sm" href="{{ route('usuarios.edit', $user->id) }}">Editar</a>
-                
+            
             
             <form style="display:inline" action="{{route('usuarios.destroy', $user->id)}}"  method="post">
                 @csrf   
@@ -43,6 +44,7 @@
                 <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
             </form> 
             </td>
+        <td><img width="80px" src="{{ Storage::url($user->avatar) }}" alt=""></td>
             
             </tr>
 
@@ -51,3 +53,4 @@
         </tbody>
     </table>
 @endsection
+

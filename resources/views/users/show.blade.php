@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 
 @section('contenido')
-
-    <h1>Cuentas</h1>
+<p><img width="150px" src="{{ Storage::url($user->avatar) }}" alt=""></p>
+    <h1>{{$user->name }}</h1>
    <table class="table">
        
            <tr>

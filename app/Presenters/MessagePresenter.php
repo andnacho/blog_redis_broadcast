@@ -32,7 +32,7 @@ class MessagePresenter extends Presenter
       }
 
       public function userLink(){
-      return $this->model->user->present()->link();
+      return $this->model->user->present()->linkUser();
       }
 
       public function notes(){

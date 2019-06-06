@@ -8,8 +8,9 @@
           
     @endif
 
-    <form class="form" method="post" action="{{ route('usuarios.update', $user->id) }}">
+    <form class="form" method="post" action="{{ route('usuarios.update', $user->id) }}" enctype="multipart/form-data">
         @method('PUT')
+    <img  width=100px src="{{ Storage::url($user->avatar) }}">
         
         @include('users.form')
                

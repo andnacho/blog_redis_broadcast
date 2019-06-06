@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use Mail;
 use App\Events\MessageWasReceived;
+use App\Mail\TuMensajeFueRecibido;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -34,9 +35,12 @@ class SendAutoresponder implements ShouldQueue
         }
 
 
-        $message = $event->message;
-         Mail::send('emails.contact', ['msg' => $message], function($m) use ($message){ //FUncion para enviar correos
-                $m->to($message->email, $message->nombre)->subject('Tu mensaje fue recibido');
-            });
+       
+        //  Mail::send('emails.contact', ['msg' => $message], function($m) use ($message){ //FUncion para enviar correos
+        //         $m->to($message->email, $message->nombre)->subject('Tu mensaje fue recibido');
+        //     });
+
+        //Esta es la versiòn con la clase mail
+        Mail::to($message->email)->send(new TuMensajeFueRecibido($message));
     }
 }

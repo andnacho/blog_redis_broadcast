@@ -57,10 +57,21 @@ class UsersController extends Controller
     
     {
         //
-        $user = User::create($request->all());
-        $user->roles()->attach($request->roles);
+        
+        // $user = User::create($request->all());
 
+        // if($request->hasFile('avatar')){
+        //     $user->avatar = $request->file('avatar')->store('public');
+        //     }
 
+        $user = (new User)->fill($request->all());
+
+        $user->avatar = $request->file('avatar')->store('public');
+            
+            $user->save();
+            
+            $user->roles()->attach($request->roles);
+            
         return redirect()->route('usuarios.index');
     }
 
@@ -95,7 +106,7 @@ class UsersController extends Controller
 
          $roles = Role::pluck('display_name', 'id'); //Al ponerle id, lo utilizará como llave
        
-        return  view('users.edit', compact('user', 'roles'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -112,7 +123,9 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         
         $this->authorize('permite_ver_editar', $user);
-
+        if($request->hasFile('avatar')){
+        $user->avatar = $request->file('avatar')->store('public');
+        }
         $user->update($request->only('name', 'email'));
 
         // $user->roles()->attach($request->roles);
@@ -141,3 +154,5 @@ class UsersController extends Controller
         return back();
     }
 }
+
+
